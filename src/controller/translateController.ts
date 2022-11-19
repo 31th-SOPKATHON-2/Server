@@ -11,8 +11,8 @@ const translate = async (req: Request, res: Response) => {
         //번역 가져오기
         const output = await translateService.getOutputByInput(input);
         //번역 결과 없을 때
-        if (!output) return res.status(sc.NO_CONTENT).send();
-
+        if (!output) return res.status(sc.ACCEPTED).send(success(sc.ACCEPTED, '번역 결과 없음', { input: input }));
+        //번역 성공
         return res.status(sc.OK).send(success(sc.OK, '번역 성공', output));
     } catch (error) {
         console.log(error);
