@@ -8,7 +8,7 @@ const PORT = 3000; // 사용할 port를 3000번으로 설정
 app.use(
     cors({
         credentials: true,
-        origin: ['http://localhost:3000'],
+        origin: ['http://localhost:3000','https://client-two-orpin.vercel.app/'],
         optionsSuccessStatus: 200,
     }),
 );
