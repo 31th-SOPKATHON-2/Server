@@ -24,8 +24,8 @@ model Quiz {
 }
 
 model Translator {
-  input       String  @id @db.VarChar(50)
-  result      String? @db.VarChar(100)
-  description String  @db.VarChar(500)
-  example     String? @db.VarChar(500)
+  input       String @id @db.VarChar(50)
+  result      String @db.VarChar(100)
+  description String @db.VarChar(500)
+  example     String @db.VarChar(500)
 }
