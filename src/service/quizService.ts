@@ -23,7 +23,7 @@ const getQuiz = async () => {
                 examples: quiz.Example_Example_quiz_idToQuiz,
             };
         });
-        return data;
+        return { quiz: data };
     } catch (error) {
         console.log(error);
         throw error;
