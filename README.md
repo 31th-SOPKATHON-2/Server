@@ -7,6 +7,15 @@
 > 신조어와 유행어를 익숙한 표현으로 번역해주는 서비스.
 > (야 너두 잼민이 될 수 있어!)
 
+## 👲 Contributors 잼민이들
+|                             김경린                             |                               정준서                        |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/72034311/202870355-498b9c73-99e5-44c7-819f-95d99fb378e1.png" height="300"/> | <img src="https://user-images.githubusercontent.com/72034311/202870052-6b0a0045-0edf-42b0-8e74-9653589f3e35.png" width="300"/>  |
+|              [kkl4846](https://github.com/kkl4846)               |             [sunseo18](https://github.com/sunseo18)              |
+
+<hr>
+<br/>
+
 ## API Docs
 
 ### 🔗 [API Docs](https://www.notion.so/19eb999f9aa747b5843c2e21b61443de?v=e0ad37d72fdc40598556002c413f41a0)
