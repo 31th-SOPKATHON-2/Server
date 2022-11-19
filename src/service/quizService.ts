@@ -14,15 +14,19 @@ const getQuiz = async () => {
                     },
                 },
             },
+            orderBy: {
+                id: 'asc',
+            },
         });
-
-        const data = quizs.map((quiz: any) => {
-            return {
+        const data = [];
+        for await (let quiz of quizs) {
+            data.push({
                 question: quiz.question,
                 answerId: quiz.answer_id,
                 examples: quiz.Example_Example_quiz_idToQuiz,
-            };
-        });
+            })
+        }
+
         return { quiz: data };
     } catch (error) {
         console.log(error);
