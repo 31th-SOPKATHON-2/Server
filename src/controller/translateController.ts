@@ -10,7 +10,9 @@ const translate = async (req: Request, res: Response) => {
 
         //번역 가져오기
         const output = await translateService.getOutputByInput(input);
+        //번역 결과 없을 때
         if (!output) return res.status(sc.NO_CONTENT).send();
+        //번역 결과 있을 때
         const data = {
             input: input,
             output: output,
@@ -19,7 +21,7 @@ const translate = async (req: Request, res: Response) => {
     } catch (error) {
         return res
             .status(sc.INTERNAL_SERVER_ERROR)
-            .send(fail(sc.CREATED, rm.INTERNAL_SERVER_ERROR));
+            .send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
     }
 };
 
