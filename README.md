@@ -12,6 +12,10 @@
 ### 🔗 [API Docs](https://www.notion.so/19eb999f9aa747b5843c2e21b61443de?v=e0ad37d72fdc40598556002c413f41a0)
 
 ## ERD
+![image](https://user-images.githubusercontent.com/72034311/202863101-49dedec9-1d02-4806-960d-66055e086fcf.png)
+
+## Architecture
+![image](https://user-images.githubusercontent.com/72034311/202863136-919e8404-0fa7-4dc4-bc96-119b6e822290.png)
 
 ## Role
 
@@ -365,7 +369,7 @@
 
 </br>
 
-## Dependencies Module
+## package.json
 
 ```json
 {
@@ -392,4 +396,44 @@
         "prisma": "^4.6.1"
     }
 }
+```
+
+<hr>
+
+</br>
+
+## schema.prisma
+```
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Example {
+  id                           Int    @id @default(autoincrement())
+  text                         String @db.VarChar(50)
+  quiz_id                      Int
+  Quiz_Example_quiz_idToQuiz   Quiz   @relation("Example_quiz_idToQuiz", fields: [quiz_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "example_quiz_id_fk")
+  Quiz_ExampleToQuiz_answer_id Quiz[] @relation("ExampleToQuiz_answer_id")
+}
+
+model Quiz {
+  id                              Int       @id @default(autoincrement())
+  question                        String    @db.VarChar(100)
+  answer_id                       Int?
+  Example_ExampleToQuiz_answer_id Example?  @relation("ExampleToQuiz_answer_id", fields: [answer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "quiz_example_id_fk")
+  Example_Example_quiz_idToQuiz   Example[] @relation("Example_quiz_idToQuiz")
+}
+
+model Translator {
+  input       String  @id @db.VarChar(50)
+  result      String? @db.VarChar(100)
+  description String  @db.VarChar(500)
+  example     String? @db.VarChar(500)
+}
+
 ```
