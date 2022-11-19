@@ -1,7 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+import { QuizInfo, QuizResponseDto } from './../interfaces/QuizResponseDto';
+import { PrismaClient} from '@prisma/client';
 const prisma = new PrismaClient();
 
-const getQuiz = async () => {
+const getQuiz = async (): Promise<QuizResponseDto> => {
     try {
         const quizs = await prisma.quiz.findMany({
             select: {
@@ -18,13 +19,14 @@ const getQuiz = async () => {
                 id: 'asc',
             },
         });
-        const data = [];
+        const data: QuizInfo[] = [];
+
         for await (let quiz of quizs) {
             data.push({
                 question: quiz.question,
-                answerId: quiz.answer_id,
+                answerId: (quiz.answer_id != null)?  quiz.answer_id : 0,
                 examples: quiz.Example_Example_quiz_idToQuiz,
-            })
+            });
         }
 
         return { quiz: data };
