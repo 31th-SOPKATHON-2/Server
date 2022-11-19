@@ -7,6 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id Int @id(map: "user_pk") @unique(map: "user_id_uindex") @default(autoincrement())
+model Example {
+  id                           Int    @id @default(autoincrement())
+  text                         String @db.VarChar(50)
+  quiz_id                      Int
+  Quiz_Example_quiz_idToQuiz   Quiz   @relation("Example_quiz_idToQuiz", fields: [quiz_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "example_quiz_id_fk")
+  Quiz_ExampleToQuiz_answer_id Quiz[] @relation("ExampleToQuiz_answer_id")
+}
+
+model Quiz {
+  id                              Int       @id @default(autoincrement())
+  question                        String    @db.VarChar(100)
+  answer_id                       Int
+  Example_ExampleToQuiz_answer_id Example   @relation("ExampleToQuiz_answer_id", fields: [answer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "quiz_example_id_fk")
+  Example_Example_quiz_idToQuiz   Example[] @relation("Example_quiz_idToQuiz")
+}
+
+model Translator {
+  input  String @id @db.VarChar(50)
+  output String @db.VarChar(50)
 }
