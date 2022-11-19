@@ -18,12 +18,14 @@ model Example {
 model Quiz {
   id                              Int       @id @default(autoincrement())
   question                        String    @db.VarChar(100)
-  answer_id                       Int
-  Example_ExampleToQuiz_answer_id Example   @relation("ExampleToQuiz_answer_id", fields: [answer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "quiz_example_id_fk")
+  answer_id                       Int?
+  Example_ExampleToQuiz_answer_id Example?  @relation("ExampleToQuiz_answer_id", fields: [answer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "quiz_example_id_fk")
   Example_Example_quiz_idToQuiz   Example[] @relation("Example_quiz_idToQuiz")
 }
 
 model Translator {
-  input  String @id @db.VarChar(50)
-  output String @db.VarChar(50)
+  input       String  @id @db.VarChar(50)
+  result      String? @db.VarChar(100)
+  description String  @db.VarChar(500)
+  example     String? @db.VarChar(500)
 }
