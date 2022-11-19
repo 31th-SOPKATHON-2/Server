@@ -12,13 +12,10 @@ const translate = async (req: Request, res: Response) => {
         const output = await translateService.getOutputByInput(input);
         //번역 결과 없을 때
         if (!output) return res.status(sc.NO_CONTENT).send();
-        //번역 결과 있을 때
-        const data = {
-            input: input,
-            output: output,
-        };
-        return res.status(sc.OK).send(success(sc.OK, '번역 성공', data));
+
+        return res.status(sc.OK).send(success(sc.OK, '번역 성공', output));
     } catch (error) {
+        console.log(error);
         return res
             .status(sc.INTERNAL_SERVER_ERROR)
             .send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));

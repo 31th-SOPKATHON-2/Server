@@ -15,8 +15,7 @@ const getOutputByInput = async (input: string) => {
     });
     //단어가 db에 저장이 안되어있을 때
     if (!data) return null;
-
-    return data;
+    return { input: input, output: data };
 };
 
 const translateService = { getOutputByInput };
